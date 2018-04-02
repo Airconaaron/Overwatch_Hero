@@ -1,9 +1,9 @@
 # project
 
-> Overwatch Hero Picker
+Overwatch Hero Picker built with Vue. Currently the reccomendations are all crap because the numbers are all randomized. This was a concept for a UI I was designing.
 
 ## Build Setup
-
+You'll need npm or yarn to run this.
 ``` bash
 # install dependencies
 npm install
