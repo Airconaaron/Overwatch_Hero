@@ -26,6 +26,7 @@
 
        <v-flex xs6>
         <ul>
+          <!--  .sort(this.compareScore) -->
           <li v-for="person in friend.people" v-if="person.selected === false" :key="person.id" >
             <HeroPicker :name="person.name" :image="person.bg" :role="person.role" :score="person.score" :left='false' @click.native="heroSelect(1, person.id)"></HeroPicker>
           </li>
@@ -73,8 +74,8 @@ export default {
       // alert('hello')
       this.randomizeScore()
     },
-    heroSelect: function (friend, id) {
-      if (friend === 1) {
+    heroSelect: function (t, id) {
+      if (t === 1) {
         if (this.friend.number < 6) {
           for (var person of this.friend.people) {
             if (person.id === id) {
@@ -96,8 +97,8 @@ export default {
         }
       }
     },
-    heroDeselect: function (friend, id) {
-      if (friend === 1) {
+    heroDeselect: function (t, id) {
+      if (t === 1) {
         for (var person of this.friend.people) {
           if (person.id === id) {
             person.selected = false
@@ -122,6 +123,12 @@ export default {
       for (var person1 of this.enemy.people) {
         person1.score = Math.ceil(Math.random() * 100)
       }
+      // this.friend.people.sort(this.compareScore)
+    },
+    compareScore: function (a, b) {
+      if (a.score < b.score) { return 1 }
+      if (a.score > b.score) { return -1 }
+      return 0
     }
   },
   data () {
@@ -156,7 +163,7 @@ export default {
           {id: 25, name: 'Symmetra', bg: 'portraits/symmetra-portrait-small.png', role: 'heal', score: 50, selected: false},
           {id: 26, name: 'Zenyatta', bg: 'portraits/zenyatta-portrait-small.png', role: 'heal', score: 50, selected: false}
         ],
-        number: 0
+        number: 1
       },
       enemy: {
         people: [
@@ -188,7 +195,7 @@ export default {
           {id: 25, name: 'Symmetra', bg: 'portraits/symmetra-portrait-small.png', role: 'heal', score: 50, selected: false},
           {id: 26, name: 'Zenyatta', bg: 'portraits/zenyatta-portrait-small.png', role: 'heal', score: 50, selected: false}
         ],
-        number: 0
+        number: 1
       },
       map: {
         list: [
